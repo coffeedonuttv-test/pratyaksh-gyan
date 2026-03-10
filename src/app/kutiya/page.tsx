@@ -7,9 +7,15 @@ export default function KutiyaPage() {
     return (
         <div className="relative min-h-screen bg-[#050505] overflow-hidden selection:bg-[#8C4A2A]/30 flex flex-col items-center">
 
-            {/* Ambient Ashram Atmosphere */}
-            <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#8C4A2A] opacity-[0.03] blur-[150px] pointer-events-none" />
-            <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#D4AF37] opacity-[0.015] blur-[120px] pointer-events-none" />
+            {/* Ambient Ashram Atmosphere - Optimized for GPU Performance */}
+            <div 
+                className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] pointer-events-none" 
+                style={{ background: 'radial-gradient(circle, rgba(140,74,42,0.05) 0%, rgba(5,5,5,0) 60%)' }}
+            />
+            <div 
+                className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] pointer-events-none" 
+                style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.03) 0%, rgba(5,5,5,0) 60%)' }}
+            />
 
             {/* Clean Container - Removed all the messy static text */}
             <div className="relative z-10 pt-24 pb-12 container mx-auto px-6 lg:px-12 w-full">
