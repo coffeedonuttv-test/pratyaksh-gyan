@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme inline {
+  --color-deep-void: #050505;
+  --color-terracotta: #8C4A2A;
+  --font-sans: var(--font-inter);
+  --font-devanagari: var(--font-yatra);
+}
+
+body {
+  background-color: var(--color-deep-void);
+  color: #ededed;
+  cursor: none;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.8;
+    transform: scale(1.0);
+  }
+
+  50% {
+    opacity: 1.0;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 122, 51, 0.6);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@utility animate-flicker {
+  animation: flicker 0.15s infinite alternate;
+}
