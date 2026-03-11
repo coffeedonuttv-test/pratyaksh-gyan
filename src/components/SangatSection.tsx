@@ -4,21 +4,21 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const youtubeChannels = [
+const digitalPresences = [
+    {
+        nameHi: "आध्यात्मिक प्रत्यक्ष ज्ञान सत्संग",
+        nameEn: "Satsang Channel",
+        url: "https://www.youtube.com/@%E0%A4%86%E0%A4%A7%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%AE%E0%A4%BF%E0%A4%95%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%9C%E0%A5%8D%E0%A4%9E%E0%A4%BE%E0%A4%A8%E0%A4%B8%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%82%E0%A4%97"
+    },
+    {
+        nameHi: "आध्यात्मिक प्रत्यक्ष ज्ञान योगी",
+        nameEn: "Yogi Insights",
+        url: "https://www.youtube.com/@%E0%A4%86%E0%A4%A7%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%AE%E0%A4%BF%E0%A4%95%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%9C%E0%A5%8D%E0%A4%9E%E0%A4%BE%E0%A4%A8%E0%A4%AF%E0%A5%8B%E0%A4%97%E0%A5%80"
+    },
     {
         nameHi: "आध्यात्मिक प्रत्यक्ष ज्ञान",
-        nameEn: "Main Channel",
-        url: "https://youtube.com/@aadhyatmikpratyakshgyan?si=jl_tcSXZct1AafcQ"
-    },
-    {
-        nameHi: "प्रत्यक्ष ज्ञान सेवा",
-        nameEn: "Seva / Service",
-        url: "https://youtube.com/@aadhyatmikpratyakshgyanseva?si=pzIwEmyVHSqEtTJR"
-    },
-    {
-        nameHi: "प्रत्यक्ष ज्ञान योगी",
-        nameEn: "Yogi Insights",
-        url: "https://youtube.com/@aadhyatmikpratyakshgyanyogi?si=cZITzSxuXNRyC_HT"
+        nameEn: "Facebook Profile",
+        url: "https://www.facebook.com/p/%E0%A4%86%E0%A4%A7%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%AE%E0%A4%BF%E0%A4%95-%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%95%E0%A5%8D%E0%A4%B7-%E0%A4%9C%E0%A5%8D%E0%A4%9E%E0%A4%BE%E0%A4%A8-100087055224177/"
     }
 ];
 
@@ -70,9 +70,9 @@ export default function SangatSection() {
                 </Link>
             </div>
 
-            {/* YouTube Shrines Grid */}
+            {/* YouTube & Social Shrines Grid */}
             <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
-                {youtubeChannels.map((channel, idx) => (
+                {digitalPresences.map((channel, idx) => (
                     <Link 
                         key={idx} 
                         href={channel.url} 
@@ -85,7 +85,7 @@ export default function SangatSection() {
                             <h4 className="font-devanagari text-2xl md:text-3xl text-white/90 group-hover:text-white transition-colors">{channel.nameHi}</h4>
                             <p className="text-white/30 text-[10px] uppercase tracking-[0.4em] font-light">{channel.nameEn}</p>
                         </div>
-                        <span className="mt-8 text-[10px] tracking-[0.3em] text-white/20 group-hover:text-[#8C4A2A] transition-colors uppercase font-medium">Visit Channel →</span>
+                        <span className="mt-8 text-[10px] tracking-[0.3em] text-white/20 group-hover:text-[#8C4A2A] transition-colors uppercase font-medium">Visit Profile →</span>
                     </Link>
                 ))}
             </div>

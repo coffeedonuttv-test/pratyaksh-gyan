@@ -27,7 +27,7 @@ export default function Footer() {
                         style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                     >
                         <h2 className="font-devanagari text-4xl md:text-6xl lg:text-[4.5vw] leading-tight text-white/10 group-hover:text-[#8C4A2A]/40 transition-colors duration-700 text-center tracking-wide w-full">
-                            ईमानदारी मुक्ति है, बेईमान बंधन।
+                            ईमानदारी मुक्ति है, बेईमानी बंधन।
                         </h2>
                     </div>
 
