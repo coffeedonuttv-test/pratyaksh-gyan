@@ -116,7 +116,7 @@ export default function SangatSection() {
                                 <h3 className="font-devanagari text-2xl md:text-3xl lg:text-4xl text-white/90 leading-tight tracking-wide">
                                     ग्राम अदलपुरा, पोस्ट चीचली, तहसील कसरावद, जिला खरगोन पश्चिम निमाड़, मध्य प्रदेश
                                 </h3>
-                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660 | PHONE: 9244138241</p>
+                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660 | PHONE: +91 9244138241</p>
                             </div>
 
                             {/* Back - English */}
@@ -124,7 +124,7 @@ export default function SangatSection() {
                                 <h3 className="font-sans text-base md:text-lg lg:text-xl text-white/90 leading-relaxed tracking-widest uppercase font-light">
                                     Village Adalpura, Post Chichli, Tehsil Kasrawad, District Khargone West Nimar, Madhya Pradesh
                                 </h3>
-                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660 | PHONE: 9244138241</p>
+                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660 | PHONE: +91 9244138241</p>
                             </div>
                         </motion.div>
                     </div>

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Our Video Library Data
 const videos = [
-    { id: 0, src: "https://www.youtube.com/embed/n4pGZtXvXYQ", titleHi: "ध्यान कैसे होता हैं ?", titleEn: "How does meditation happen?" },
+    { id: 0, src: "/guru-teach.mp4.mp4", titleHi: "ध्यान कैसे होता हैं ?", titleEn: "How does meditation happen?" },
     { id: 1, src: "https://www.youtube.com/embed/0HCUd_HZSA4", titleHi: "योगीजी की आत्मकथा अज्ञान से ज्ञान तक खोज में कुछ अनुभव की बातें !", titleEn: "Yogiji's Autobiography: Experiences from Ignorance to Knowledge" },
     { id: 2, src: "https://www.youtube.com/embed/UQeAF5eyqPs", titleHi: "अब जाऊं कहां", titleEn: "Where do I go now" },
     { id: 3, src: "https://www.youtube.com/embed/g7Xu_HB4ajg", titleHi: "मैं नहीं मानता राम को परमात्मा तुम्हें मानना है तो मानो !", titleEn: "I do not believe Ram is God, if you want to believe, then believe!" },
@@ -16,13 +16,32 @@ export default function GyanSection() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
     const iframeRef = useRef<HTMLIFrameElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     const activeVideo = videos[currentIndex];
+    const isLocalVideo = activeVideo.src.endsWith(".mp4");
 
-    // Reset translation when changing slides
+    // Reset state when changing slides
     useEffect(() => {
         setIsFlipped(false); // Always reset to Hindi when changing videos
-    }, [currentIndex]);
+        setIsPlaying(false);
+        if (isLocalVideo && videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+            videoRef.current.load();
+        }
+    }, [currentIndex, isLocalVideo]);
+
+    const togglePlay = () => {
+        if (isLocalVideo && videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
 
     const nextVideo = () => setCurrentIndex((prev) => (prev + 1) % videos.length);
     const prevVideo = () => setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
@@ -79,8 +98,11 @@ export default function GyanSection() {
             {/* The Cinematic Video Slider */}
             <div className="w-full max-w-[1400px] mx-auto flex flex-col items-center">
 
-                {/* The YouTube iframe Container */}
-                <div className="w-full aspect-video md:h-[600px] lg:h-[700px] bg-[#0a0a0a] border border-white/10 rounded-lg flex items-center justify-center relative shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden group">
+                {/* The Media Container (Handles both MP4 and iFrames) */}
+                <div 
+                    className={`w-full aspect-video md:h-[600px] lg:h-[700px] bg-[#0a0a0a] border border-white/10 rounded-lg flex items-center justify-center relative shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden group ${isLocalVideo ? 'cursor-pointer' : ''}`}
+                    onClick={isLocalVideo ? togglePlay : undefined}
+                >
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeVideo.id}
@@ -90,14 +112,34 @@ export default function GyanSection() {
                             transition={{ duration: 0.8 }}
                             className="absolute inset-0 w-full h-full"
                         >
-                            <iframe
-                                ref={iframeRef}
-                                src={`${activeVideo.src}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0`}
-                                className="w-full h-full object-cover relative z-20"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                title={activeVideo.titleHi}
-                            />
+                            {isLocalVideo ? (
+                                <>
+                                    <video
+                                        ref={videoRef}
+                                        src={activeVideo.src}
+                                        className="w-full h-full object-cover relative z-0"
+                                        playsInline
+                                        onEnded={() => setIsPlaying(false)}
+                                    />
+                                    {/* Dark Overlay for Local Video */}
+                                    <div className={`absolute inset-0 z-20 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent transition-opacity duration-700 pointer-events-none ${isPlaying ? "opacity-0" : "opacity-100"}`} />
+                                    {/* Play Button for Local Video */}
+                                    <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 z-30 pointer-events-none ${isPlaying ? "opacity-0 scale-150 pointer-events-none" : "opacity-100 scale-100"}`}>
+                                        <div className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md group-hover:scale-110 group-hover:bg-[#8C4A2A]/80 group-hover:border-[#8C4A2A] transition-all duration-500 shadow-2xl">
+                                            <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-white border-b-[10px] border-b-transparent ml-1" />
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <iframe
+                                    ref={iframeRef}
+                                    src={`${activeVideo.src}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0`}
+                                    className="w-full h-full object-cover relative z-20"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title={activeVideo.titleHi}
+                                />
+                            )}
                         </motion.div>
                     </AnimatePresence>
                 </div>
