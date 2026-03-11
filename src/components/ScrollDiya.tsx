@@ -78,28 +78,34 @@ export default function ScrollDiya() {
                     className={`absolute w-4 h-4 rounded-full blur-[6px] transition-colors duration-300 ${isLit ? 'bg-[#FFFFFF]' : 'bg-[#FF9933]'}`}
                 />
 
+                {/* Glassmorphic Puck - Fades in near the footer to guarantee contrast against pitch black */}
+                <motion.div
+                    style={{ opacity: useTransform(smoothProgress, [0.85, 1], [0, 1]) }}
+                    className="absolute inset-[-4px] rounded-full bg-[#111111]/80 backdrop-blur-xl border border-white/10 z-[5] shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+                />
+
                 {/* The Physical SVG Diya / Lotus Bud */}
                 <motion.div 
                     style={{ scale: useTransform(smoothProgress, [0, 1], [1, 1.15], { clamp: false }) }}
                     className="z-10 text-white/80"
                 >
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="drop-shadow-2xl">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="drop-shadow-2xl relative z-10">
                         {/* Base of Diya */}
                         <path 
                             d="M12 21C17.5228 21 22 18 22 15C22 13.5 17.5228 13 12 13C6.47715 13 2 13.5 2 15C2 18 6.47715 21 12 21Z" 
-                            fill={isLit ? "rgba(212, 175, 55, 0.4)" : "rgba(255, 255, 255, 0.05)"}
-                            stroke={isLit ? "#D4AF37" : "rgba(255, 255, 255, 0.4)"} 
+                            fill={isLit ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.05)"}
+                            stroke={isLit ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)"} 
                             strokeWidth="1.5" 
                             strokeLinecap="round" 
                             strokeLinejoin="round" 
-                            className="transition-all duration-1000 drop-shadow-md"
+                            className="transition-all duration-1000"
                         />
                         {/* Inner physical flame vessel */}
                         <path 
                             d="M12 13C12 9 10 5 12 2C14 5 12 9 12 13Z" 
                             fill={isLit ? activeColor : dormantColor} 
                             stroke={isLit ? "#FFFFFF" : "rgba(255,255,255,0.2)"} 
-                            strokeWidth="1" 
+                            strokeWidth="1.5" 
                             strokeLinecap="round" 
                             strokeLinejoin="round" 
                             className="transition-all duration-500" 
@@ -109,7 +115,7 @@ export default function ScrollDiya() {
             </div>
 
             {/* Spring-Driven Typography */}
-            <div className={`font-sans text-[11px] tracking-[0.2em] font-medium font-mono min-w-[36px] text-center transition-colors duration-500 ${isLit ? 'text-white' : 'text-[#8C4A2A]'}`}>
+            <div className={`font-sans text-[11px] tracking-[0.2em] font-medium font-mono min-w-[36px] text-center transition-all duration-500 ${isLit ? 'text-white translate-y-1' : 'text-[#8C4A2A]'}`}>
                 <motion.span>{useTransform(springPercentOutput, (v) => Math.round(v))}</motion.span>%
             </div>
         </motion.div>
