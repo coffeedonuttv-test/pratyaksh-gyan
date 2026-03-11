@@ -3,7 +3,6 @@ import { Yatra_One, Inter } from "next/font/google";
 import "./globals.css";
 import ShunyaHeader from "@/components/ShunyaHeader";
 import ScrollDiya from "@/components/ScrollDiya";
-import TransitionWrapper from "@/components/TransitionWrapper";
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 
@@ -35,9 +34,7 @@ export default function RootLayout({
       >
         <CustomCursor />
         <ShunyaHeader />
-        <TransitionWrapper>
-          {children}
-        </TransitionWrapper>
+        {children}
         <ScrollDiya />
         <Footer />
       </body>
