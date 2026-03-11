@@ -94,7 +94,7 @@ export default function ScrollDiya() {
                         <path 
                             d="M12 21C17.5228 21 22 18 22 15C22 13.5 17.5228 13 12 13C6.47715 13 2 13.5 2 15C2 18 6.47715 21 12 21Z" 
                             fill={isLit ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.05)"}
-                            stroke={isLit ? "#FFFFFF" : "rgba(255, 255, 255, 0.4)"} 
+                            stroke={isLit ? "#FFFFFF" : "rgba(255, 255, 255, 0.8)"} 
                             strokeWidth="1.5" 
                             strokeLinecap="round" 
                             strokeLinejoin="round" 
@@ -104,7 +104,7 @@ export default function ScrollDiya() {
                         <path 
                             d="M12 13C12 9 10 5 12 2C14 5 12 9 12 13Z" 
                             fill={isLit ? activeColor : dormantColor} 
-                            stroke={isLit ? "#FFFFFF" : "rgba(255,255,255,0.2)"} 
+                            stroke={isLit ? "#FFFFFF" : "rgba(255,255,255,0.6)"} 
                             strokeWidth="1.5" 
                             strokeLinecap="round" 
                             strokeLinejoin="round" 
