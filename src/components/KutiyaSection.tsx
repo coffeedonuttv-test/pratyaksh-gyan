@@ -12,6 +12,7 @@ const images = [
 
 export default function KutiyaSection() {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [isAddressFlipped, setIsAddressFlipped] = useState(false);
     const [selectedId, setSelectedId] = useState<number | null>(null);
 
     return (
@@ -83,11 +84,40 @@ export default function KutiyaSection() {
             </div>
 
             {/* Address Section */}
-            <div className="mt-32 w-full max-w-2xl text-center border-t border-white/5 pt-16 mb-8">
+            <div className="mt-32 w-full max-w-2xl text-center border-t border-white/5 pt-16 mb-8 flex flex-col items-center">
                 <p className="text-[#8C4A2A] text-xs tracking-[0.4em] uppercase font-light mb-8">The Physical Location</p>
-                <p className="font-devanagari text-xl md:text-2xl text-white/70 leading-relaxed drop-shadow-md">
-                    ग्राम अदलपुरा, पोस्ट निमरानी, तहसील कसरावद,<br /> जिला खरगोन, पश्चिम निमाड़, मध्य प्रदेश एमपी<br />पिन कोड - 451660
-                </p>
+                
+                <div 
+                    className="relative cursor-pointer [perspective:2000px] group w-full h-[120px] md:h-[100px]"
+                    onClick={() => setIsAddressFlipped(!isAddressFlipped)}
+                >
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse"></div>
+                        <span className="text-[#8C4A2A] text-[9px] tracking-[0.4em] uppercase font-light">Click to Translate</span>
+                    </div>
+
+                    <motion.div
+                        className="w-full h-full relative"
+                        initial={false}
+                        animate={{ rotateY: isAddressFlipped ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 40, damping: 15 }}
+                        style={{ transformStyle: "preserve-3d" }}
+                    >
+                        {/* Front - Hindi */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full" style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                            <p className="font-devanagari text-xl md:text-2xl text-white/70 leading-relaxed drop-shadow-md px-4">
+                                ग्राम अदलपुरा, पोस्ट निमरानी, तहसील कसरावद,<br /> जिला खरगोन, पश्चिम निमाड़, मध्य प्रदेश एमपी<br />पिन कोड - 451660
+                            </p>
+                        </div>
+
+                        {/* Back - English */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full px-4" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                            <p className="font-sans text-xs md:text-sm text-white/70 leading-relaxed drop-shadow-md tracking-widest uppercase font-light">
+                                Village Adalpura, Post Nimrani, Tehsil Kasrawad,<br /> District Khargone, West Nimar, Madhya Pradesh MP<br />PIN Code - 451660
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
 
             {/* Fullscreen Lightbox for Images */}

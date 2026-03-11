@@ -24,6 +24,7 @@ const youtubeChannels = [
 
 export default function SangatSection() {
     const [isFlipped, setIsFlipped] = useState(false);
+    const [isAddressFlipped, setIsAddressFlipped] = useState(false);
 
     return (
         <section className="w-full flex flex-col items-center px-4 md:px-12 lg:px-24 relative z-20">
@@ -93,11 +94,39 @@ export default function SangatSection() {
             <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32 border-t border-white/5 pt-32">
                 <div className="flex flex-col gap-10 text-center lg:text-left">
                     <p className="text-[#8C4A2A] text-xs tracking-[0.5em] uppercase font-light">Physical Presence</p>
-                    <h3 className="font-devanagari text-3xl md:text-4xl lg:text-5xl text-white/90 leading-tight tracking-wide">
-                        ग्राम अदलपुरा, पोस्ट निमरानी, तहसील कसरावद, जिला खरगोन, पश्चिम निमाड़, मध्य प्रदेश एमपी
-                    </h3>
-                    <div className="flex flex-col gap-2">
-                        <p className="text-white/40 text-sm tracking-[0.4em]">PIN CODE: 451660</p>
+                    
+                    <div 
+                        className="relative cursor-pointer [perspective:2000px] group w-full h-[200px] md:h-[180px] lg:h-[220px]"
+                        onClick={() => setIsAddressFlipped(!isAddressFlipped)}
+                    >
+                        <div className="absolute -top-4 lg:left-0 left-1/2 lg:-translate-x-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10 lg:pl-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse"></div>
+                            <span className="text-[#8C4A2A] text-[9px] tracking-[0.4em] uppercase font-light">Click to Translate</span>
+                        </div>
+
+                        <motion.div
+                            className="w-full h-full relative"
+                            initial={false}
+                            animate={{ rotateY: isAddressFlipped ? 180 : 0 }}
+                            transition={{ type: "spring", stiffness: 40, damping: 15 }}
+                            style={{ transformStyle: "preserve-3d" }}
+                        >
+                            {/* Front - Hindi */}
+                            <div className="absolute inset-0 flex flex-col justify-center text-center lg:text-left w-full h-full" style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                                <h3 className="font-devanagari text-3xl md:text-4xl lg:text-5xl text-white/90 leading-tight tracking-wide">
+                                    ग्राम अदलपुरा, पोस्ट निमरानी, तहसील कसरावद, जिला खरगोन, पश्चिम निमाड़, मध्य प्रदेश एमपी
+                                </h3>
+                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660</p>
+                            </div>
+
+                            {/* Back - English */}
+                            <div className="absolute inset-0 flex flex-col justify-center text-center lg:text-left w-full h-full" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                                <h3 className="font-sans text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed tracking-widest uppercase font-light">
+                                    Village Adalpura, Post Nimrani, Tehsil Kasrawad, District Khargone, West Nimar, Madhya Pradesh MP
+                                </h3>
+                                <p className="text-white/40 text-sm tracking-[0.4em] mt-6">PIN CODE: 451660</p>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
 
