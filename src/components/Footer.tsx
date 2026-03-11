@@ -8,7 +8,7 @@ export default function Footer() {
     const [isFlipped, setIsFlipped] = useState(false);
 
     return (
-        <footer className="w-full bg-[#030202] border-t border-[#8C4A2A]/20 pt-20 pb-8 px-6 md:px-12 lg:px-24 flex flex-col items-center justify-between relative z-20">
+        <footer className="w-full bg-[#0A0A0A] border-t border-[#8C4A2A]/20 pt-20 pb-8 px-6 md:px-12 lg:px-24 flex flex-col items-center justify-between relative z-20">
 
             {/* Top Section - Interactive 3D Quote */}
             <div
