@@ -55,7 +55,7 @@ export default function ShunyaHeader() {
             {/* Left: Home Link */}
             <Link href="/" className="flex items-center gap-3 group cursor-pointer">
                 <div className="w-2 h-2 rounded-full bg-[#8C4A2A] shadow-[0_0_8px_rgba(140,74,42,0.8)] group-hover:shadow-[0_0_12px_rgba(140,74,42,1)] transition-shadow duration-300" />
-                <span className="font-sans font-medium text-xs md:text-sm tracking-widest text-[#8C4A2A] group-hover:text-[#a65d38] transition-colors duration-300">PRATYAKSH GYAN</span>
+                <span className="font-sans font-medium text-xs md:text-sm tracking-widest text-[#8C4A2A] group-hover:text-[#a65d38] transition-colors duration-300">AADHYATMIK PRATYAKSH GYAN SATSANG</span>
             </Link>
 
             {/* Center Links */}
