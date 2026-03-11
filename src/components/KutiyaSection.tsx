@@ -103,19 +103,19 @@ export default function KutiyaSection() {
                         transition={{ type: "spring", stiffness: 40, damping: 15 }}
                         style={{ transformStyle: "preserve-3d" }}
                     >
-                        {/* Front - Hindi */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full" style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
-                            <p className="font-devanagari text-xl md:text-2xl text-white/70 leading-relaxed drop-shadow-md px-4">
-                                ग्राम अदलपुरा, पोस्ट निमरानी, तहसील कसरावद,<br /> जिला खरगोन, पश्चिम निमाड़, मध्य प्रदेश एमपी<br />पिन कोड - 451660
-                            </p>
-                        </div>
+                            {/* Front - Hindi */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full" style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                                <p className="font-devanagari text-lg md:text-xl text-white/70 leading-relaxed drop-shadow-md px-4">
+                                    ग्राम अदलपुरा, पोस्ट चीचली, तहसील कसरावद,<br /> जिला खरगोन पश्चिम निमाड़, मध्य प्रदेश<br />पिन कोड - 451660 | फोन - 9244138241
+                                </p>
+                            </div>
 
-                        {/* Back - English */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full px-4" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
-                            <p className="font-sans text-xs md:text-sm text-white/70 leading-relaxed drop-shadow-md tracking-widest uppercase font-light">
-                                Village Adalpura, Post Nimrani, Tehsil Kasrawad,<br /> District Khargone, West Nimar, Madhya Pradesh MP<br />PIN Code - 451660
-                            </p>
-                        </div>
+                            {/* Back - English */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center w-full h-full px-4" style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}>
+                                <p className="font-sans text-[10px] md:text-xs text-white/70 leading-relaxed drop-shadow-md tracking-widest uppercase font-light">
+                                    Village Adalpura, Post Chichli, Tehsil Kasrawad,<br /> District Khargone West Nimar, Madhya Pradesh<br />PIN Code - 451660 | Phone - 9244138241
+                                </p>
+                            </div>
                     </motion.div>
                 </div>
             </div>
