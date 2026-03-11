@@ -118,7 +118,7 @@ export default function HeroShunya() {
       <div className="absolute bottom-20 left-0 w-full z-10 flex flex-col items-center justify-center pointer-events-none select-none px-4">
         {/* Grammatically perfect Hindi phrasing with proper punctuation */}
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide text-white/95 font-devanagari text-center drop-shadow-[0_0_40px_rgba(255,255,255,0.15)] leading-relaxed">
-          ईमानदारी मुक्ति है<span className="font-sans text-white/60 mx-1">,</span> बेईमान बंधन<span className="font-sans text-white/60 ml-1">।</span>
+          ईमानदारी मुक्ति है<span className="font-sans text-white/60 mx-1">,</span> बेईमानी बंधन<span className="font-sans text-white/60 ml-1">।</span>
         </h1>
         <p className="mt-4 text-[9px] md:text-[11px] tracking-[0.6em] text-[#8C4A2A] uppercase font-medium">
           Honesty is Freedom
