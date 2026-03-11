@@ -87,11 +87,12 @@ export default function ScrollDiya() {
                         {/* Base of Diya */}
                         <path 
                             d="M12 21C17.5228 21 22 18 22 15C22 13.5 17.5228 13 12 13C6.47715 13 2 13.5 2 15C2 18 6.47715 21 12 21Z" 
-                            stroke="rgba(255, 255, 255, 0.4)" 
-                            strokeWidth="1.2" 
+                            fill={isLit ? "rgba(212, 175, 55, 0.4)" : "rgba(255, 255, 255, 0.05)"}
+                            stroke={isLit ? "#D4AF37" : "rgba(255, 255, 255, 0.4)"} 
+                            strokeWidth="1.5" 
                             strokeLinecap="round" 
                             strokeLinejoin="round" 
-                            className="transition-colors duration-1000"
+                            className="transition-all duration-1000 drop-shadow-md"
                         />
                         {/* Inner physical flame vessel */}
                         <path 
