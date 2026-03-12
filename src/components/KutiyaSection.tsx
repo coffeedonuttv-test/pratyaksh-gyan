@@ -54,41 +54,12 @@ export default function KutiyaSection() {
                 </div>
             </div>
 
-            {/* Clean Description Text */}
-            <div className="max-w-3xl text-center mb-24 px-4 flex flex-col items-center gap-6">
-                <h3 className="text-2xl md:text-4xl text-white/90 font-light tracking-wide leading-tight">
-                    A place of <span className="text-[#8C4A2A] italic font-serif">Direct Knowledge</span><br /> and profound peace.
-                </h3>
-                <p className="text-sm md:text-base text-white/40 leading-relaxed font-light tracking-widest max-w-xl">
-                    Discover the profound teachings and the spiritual environment where seekers gather to understand the ultimate truth.
-                </p>
-            </div>
-
-            {/* Fluid Image Gallery (Staggered like the videos) */}
-            <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 px-4">
-                {images.map((item, idx) => (
-                    <motion.div
-                        key={item.id}
-                        layoutId={`kutiya-image-${item.id}`}
-                        className={`relative aspect-[3/4] overflow-hidden cursor-pointer group rounded-sm bg-[#0a0a0a] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-[#8C4A2A]/40 transition-all duration-700 ${idx === 1 ? 'md:mt-16' : ''} ${idx === 2 ? 'md:mt-32' : ''}`}
-                        onClick={() => setSelectedId(item.id)}
-                    >
-                        <div className="absolute inset-0 bg-[#8C4A2A]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay" />
-                        <motion.img
-                            src={item.src}
-                            alt={item.alt}
-                            className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
-                        />
-                    </motion.div>
-                ))}
-            </div>
-
             {/* Address Section */}
-            <div className="mt-32 w-full max-w-2xl text-center border-t border-white/5 pt-16 mb-8 flex flex-col items-center">
+            <div className="w-full max-w-2xl mx-auto text-center mb-24 px-4 flex flex-col items-center">
                 <p className="text-[#8C4A2A] text-xs tracking-[0.4em] uppercase font-light mb-8">The Physical Location</p>
                 
                 <div 
-                    className="relative cursor-pointer [perspective:2000px] group w-full h-[120px] md:h-[100px]"
+                    className="relative cursor-pointer [perspective:2000px] group w-full h-[140px] md:h-[120px]"
                     onClick={() => setIsAddressFlipped(!isAddressFlipped)}
                 >
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10">
@@ -119,6 +90,27 @@ export default function KutiyaSection() {
                     </motion.div>
                 </div>
             </div>
+
+            {/* Fluid Image Gallery (Staggered like the videos) */}
+            <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 px-4">
+                {images.map((item, idx) => (
+                    <motion.div
+                        key={item.id}
+                        layoutId={`kutiya-image-${item.id}`}
+                        className={`relative aspect-[3/4] overflow-hidden cursor-pointer group rounded-sm bg-[#0a0a0a] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-[#8C4A2A]/40 transition-all duration-700 ${idx === 1 ? 'md:mt-16' : ''} ${idx === 2 ? 'md:mt-32' : ''}`}
+                        onClick={() => setSelectedId(item.id)}
+                    >
+                        <div className="absolute inset-0 bg-[#8C4A2A]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay" />
+                        <motion.img
+                            src={item.src}
+                            alt={item.alt}
+                            className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                        />
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Address Section Removed (Moved to top) */}
 
             {/* Fullscreen Lightbox for Images */}
             <AnimatePresence>

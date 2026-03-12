@@ -1,10 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTextMorph } from "@/hooks/useTextMorph";
 
 export default function HeroShunya() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  
+  // 0 = Hindi, 1 = English
+  const [langState, setLangState] = useState(0);
+
+  const quoteMain = useTextMorph(
+    langState === 0 ? "ईमानदारी मुक्ति है, बेईमानी बंधन।" : "Honesty is Freedom", 
+    langState, 
+    1200
+  );
 
   // --------------------------------------------------------
   // THE SPIRIT: ETHEREAL BREATHING LOTUS
@@ -56,10 +66,9 @@ export default function HeroShunya() {
 
     const animateLotus = () => {
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+      
+      // Centered placement
       const centerX = dimensions.width / 2;
-
-      // PRO-TRICK: Shift the Lotus significantly UP (40% of the screen height) 
-      // This leaves the entire bottom half of the screen completely empty for the text.
       const centerY = dimensions.height * 0.40;
 
       time += 0.005;
@@ -104,25 +113,33 @@ export default function HeroShunya() {
   }, [dimensions]);
 
   return (
-    <section id="hero-shunya" className="h-screen w-full relative overflow-hidden flex flex-col bg-[#050505]">
+    <section id="hero-shunya" className="h-screen w-full relative overflow-hidden flex flex-col bg-transparent">
 
       {/* LAYER 1: The Breathing Lotus Canvas */}
       <canvas
         ref={canvasRef}
         width={dimensions.width}
         height={dimensions.height}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"
       />
 
-      {/* LAYER 2: The Master Quote (Anchored to the absolute bottom) */}
-      <div className="absolute bottom-20 left-0 w-full z-10 flex flex-col items-center justify-center pointer-events-none select-none px-4">
-        {/* Grammatically perfect Hindi phrasing with proper punctuation */}
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide text-white/95 font-devanagari text-center drop-shadow-[0_0_40px_rgba(255,255,255,0.15)] leading-relaxed">
-          ईमानदारी मुक्ति है<span className="font-sans text-white/60 mx-1">,</span> बेईमानी बंधन<span className="font-sans text-white/60 ml-1">।</span>
+      {/* LAYER 2: The Master Quote (Centered) */}
+      <div 
+         className="absolute bottom-20 left-0 w-full z-10 flex flex-col items-center justify-center pointer-events-auto cursor-pointer group px-4 text-center"
+         onClick={() => setLangState(prev => prev === 0 ? 1 : 0)}
+      >
+        <div className="flex items-center gap-3 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+             <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse"></div>
+             <span className="text-[#8C4A2A] text-[9px] tracking-[0.4em] uppercase font-light">Click to translate</span>
+        </div>
+
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide text-white/95 leading-relaxed drop-shadow-[0_0_40px_rgba(255,255,255,0.15)] flex flex-wrap justify-center font-devanagari">
+          {quoteMain === "ईमानदारी मुक्ति है, बेईमानी बंधन।" ? (
+              <>ईमानदारी मुक्ति है<span className="font-sans text-white/60 mx-1">,</span> बेईमानी बंधन<span className="font-sans text-white/60 ml-1">।</span></>
+          ) : (
+              <span className="font-sans font-light tracking-[0.2em]">{quoteMain}</span>
+          )}
         </h1>
-        <p className="mt-4 text-[9px] md:text-[11px] tracking-[0.6em] text-[#8C4A2A] uppercase font-medium">
-          Honesty is Freedom
-        </p>
       </div>
 
       {/* LAYER 3: Scroll Indicator (Anchored to the very edge of the screen) */}

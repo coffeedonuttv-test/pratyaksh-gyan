@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Magnetic from "@/components/Magnetic";
 
 export default function ShunyaHeader() {
     const { scrollYProgress } = useScroll();
@@ -28,6 +29,7 @@ export default function ShunyaHeader() {
 
     const [time, setTime] = useState<string>("");
     const [mounted, setMounted] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -53,29 +55,59 @@ export default function ShunyaHeader() {
             className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-5 transition-all duration-300"
         >
             {/* Left: Home Link */}
-            <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-                <div className="w-2 h-2 rounded-full bg-[#8C4A2A] shadow-[0_0_8px_rgba(140,74,42,0.8)] group-hover:shadow-[0_0_12px_rgba(140,74,42,1)] transition-shadow duration-300" />
-                <span className="font-sans font-medium text-xs md:text-sm tracking-widest text-[#8C4A2A] group-hover:text-[#a65d38] transition-colors duration-300">AADHYATMIK PRATYAKSH GYAN SATSANG</span>
-            </Link>
+            <Magnetic strength={0.2}>
+                <Link href="/" className="flex items-center gap-2 md:gap-3 group cursor-pointer p-2 z-50 max-w-[60vw] sm:max-w-none">
+                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#8C4A2A] shrink-0 shadow-[0_0_8px_rgba(140,74,42,0.8)] group-hover:shadow-[0_0_12px_rgba(140,74,42,1)] transition-shadow duration-300" />
+                    <span className="font-sans font-medium text-[9px] sm:text-[10px] md:text-sm tracking-widest text-[#8C4A2A] group-hover:text-[#a65d38] transition-colors duration-300 leading-tight">AADHYATMIK PRATYAKSH GYAN SATSANG</span>
+                </Link>
+            </Magnetic>
 
             {/* Center Links */}
-            <nav className="absolute left-1/2 -translate-x-1/2 items-center gap-8 hidden md:flex">
+            <nav className="absolute left-1/2 -translate-x-1/2 items-center gap-8 hidden md:flex z-50">
                 {["GYAN", "KUTIYA", "SANGAT"].map((link) => (
-                    <Link key={link} href={`/${link.toLowerCase()}`} className="font-sans text-xs font-semibold tracking-wider text-white/40 hover:text-white transition-colors duration-300">
-                        {link}
-                    </Link>
+                    <Magnetic key={link} strength={0.5}>
+                        <Link href={`/${link.toLowerCase()}`} className="font-sans text-xs font-semibold tracking-wider text-white/40 hover:text-white transition-colors duration-300 p-2">
+                            {link}
+                        </Link>
+                    </Magnetic>
                 ))}
             </nav>
 
             {/* Right */}
-            <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 font-mono text-xs md:text-sm text-white/80 min-w-[100px] justify-end">
+            <div className="flex items-center gap-4 md:gap-6 z-50">
+                <div className="flex items-center gap-2 font-mono text-[10px] md:text-sm text-white/80 min-w-[80px] md:min-w-[100px] justify-end">
                     <span>{mounted ? time : "00:00:00 AM"}</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.6)]" />
                 </div>
-                <button className="font-sans text-xs font-semibold tracking-widest text-white px-5 py-2.5 rounded-full border border-[#8C4A2A] hover:bg-[#8C4A2A]/10 transition-colors hidden sm:block">
-                    SANGAT
+                <Magnetic strength={0.4}>
+                    <Link href="/sangat" className="font-sans text-xs font-semibold tracking-widest text-white px-5 py-2.5 rounded-full border border-[#8C4A2A] hover:bg-[#8C4A2A]/10 transition-colors hidden sm:block shrink-0">
+                        SANGAT
+                    </Link>
+                </Magnetic>
+
+                {/* Mobile Hamburger */}
+                <button
+                    className="md:hidden flex flex-col gap-1.5 p-2"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    <div className={`w-5 h-[1.5px] bg-[#8C4A2A] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[7.5px]' : ''}`} />
+                    <div className={`w-5 h-[1.5px] bg-[#8C4A2A] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+                    <div className={`w-5 h-[1.5px] bg-[#8C4A2A] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[7.5px]' : ''}`} />
                 </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-[#050505]/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-10 transition-opacity duration-500 md:hidden ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                {["GYAN", "KUTIYA", "SANGAT"].map((link) => (
+                    <Link
+                        key={link}
+                        href={`/${link.toLowerCase()}`}
+                        className="font-sans text-2xl font-light tracking-[0.2em] text-[#8C4A2A] hover:text-[#a65d38] transition-colors duration-300"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        {link}
+                    </Link>
+                ))}
             </div>
         </motion.header>
     );

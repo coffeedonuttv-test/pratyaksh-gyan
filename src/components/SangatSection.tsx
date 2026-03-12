@@ -27,7 +27,7 @@ export default function SangatSection() {
     const [isAddressFlipped, setIsAddressFlipped] = useState(false);
 
     return (
-        <section className="w-full flex flex-col items-center px-4 md:px-12 lg:px-24 relative z-20">
+        <section id="sangat" className="w-full flex flex-col items-center px-4 md:px-12 lg:px-24 relative z-20">
             
             {/* 3D Flip Header */}
             <div className="mb-20 w-full flex justify-center max-w-[1400px] mx-auto mt-4">

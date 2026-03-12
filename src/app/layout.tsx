@@ -5,6 +5,9 @@ import ShunyaHeader from "@/components/ShunyaHeader";
 import ScrollDiya from "@/components/ScrollDiya";
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import SentientVoid from "@/components/SentientVoid";
+import AudioAtmosphere from "@/components/AudioAtmosphere";
 
 const interSans = Inter({
   variable: "--font-inter",
@@ -32,11 +35,15 @@ export default function RootLayout({
       <body
         className={`${interSans.variable} ${yatraOne.variable} antialiased`}
       >
-        <CustomCursor />
-        <ShunyaHeader />
-        {children}
-        <ScrollDiya />
-        <Footer />
+        <SentientVoid />
+        <AudioAtmosphere />
+        <SmoothScroll>
+          <CustomCursor />
+          <ShunyaHeader />
+          {children}
+          <ScrollDiya />
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
