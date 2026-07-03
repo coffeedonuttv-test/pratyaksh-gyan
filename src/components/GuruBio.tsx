@@ -48,7 +48,7 @@ export default function GuruBio() {
 
                         {/* ── FRONT FACE: Hindi ── */}
                         <div
-                            className="flex flex-col gap-6 bg-transparent rounded-2xl"
+                            className={`flex flex-col gap-6 bg-transparent rounded-2xl ${isFlipped ? 'pointer-events-none' : 'pointer-events-auto'}`}
                             style={{ backfaceVisibility: "hidden" }}
                         >
                             {/* Title - Clickable Header Bar */}
@@ -110,7 +110,7 @@ export default function GuruBio() {
 
                         {/* ── BACK FACE: English ── */}
                         <div
-                            className="absolute inset-0 flex flex-col gap-6 bg-transparent rounded-2xl h-full"
+                            className={`absolute inset-0 flex flex-col gap-6 bg-transparent rounded-2xl h-full ${isFlipped ? 'pointer-events-auto' : 'pointer-events-none'}`}
                             style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
                         >
                             {/* Title - Clickable Header Bar */}
