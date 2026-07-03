@@ -27,11 +27,13 @@ export default function GuruBio() {
 
                 {/* Right Column: The Flip Bio — LAYOUT PRESERVED, CONTENT UPGRADED */}
                 <div
-                    className="relative flex flex-col w-full h-full cursor-pointer [perspective:2000px] group"
-                    onClick={() => setIsFlipped(!isFlipped)}
+                    className="relative flex flex-col w-full h-full [perspective:2000px] group"
                 >
-                    {/* Hover hint */}
-                    <div className="absolute -top-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10">
+                    {/* Hover hint - Now explicitly clickable */}
+                    <div 
+                        className="absolute -top-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10 cursor-pointer"
+                        onClick={() => setIsFlipped(!isFlipped)}
+                    >
                         <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse"></div>
                         <span className="text-[#8C4A2A] text-[9px] tracking-[0.4em] uppercase font-light">Click to Translate</span>
                     </div>
@@ -49,13 +51,24 @@ export default function GuruBio() {
                             className="flex flex-col gap-6 bg-transparent rounded-2xl"
                             style={{ backfaceVisibility: "hidden" }}
                         >
-                            {/* Title */}
-                            <h2 className="font-devanagari text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
-                                योगी रविकांत जी के <span className="text-[#8C4A2A]">विषय में</span>
-                            </h2>
+                            {/* Title - Clickable Header Bar */}
+                            <div 
+                                className="flex justify-between items-start md:items-center gap-4 cursor-pointer group/header pb-2"
+                                onClick={() => setIsFlipped(true)}
+                            >
+                                <h2 className="font-devanagari text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
+                                    योगी रविकांत जी के <span className="text-[#8C4A2A]">विषय में</span>
+                                </h2>
+                                <button className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 group-hover/header:bg-white/10 transition-colors">
+                                    <span className="text-[#8C4A2A] text-[9px] tracking-widest uppercase font-sans">Flip to English ✦</span>
+                                </button>
+                            </div>
 
                             {/* Scrollable body */}
-                            <div className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5">
+                            <div 
+                                className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5 overscroll-contain"
+                                style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
+                            >
 
                                 {/* Para 1 */}
                                 <p className="font-devanagari text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
@@ -100,13 +113,24 @@ export default function GuruBio() {
                             className="absolute inset-0 flex flex-col gap-6 bg-transparent rounded-2xl h-full"
                             style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
                         >
-                            {/* Title */}
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
-                                About <span className="text-[#8C4A2A] font-serif italic">Yogi Ravikant Ji</span>
-                            </h2>
+                            {/* Title - Clickable Header Bar */}
+                            <div 
+                                className="flex justify-between items-start md:items-center gap-4 cursor-pointer group/header pb-2"
+                                onClick={() => setIsFlipped(false)}
+                            >
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
+                                    About <span className="text-[#8C4A2A] font-serif italic">Yogi Ravikant Ji</span>
+                                </h2>
+                                <button className="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 group-hover/header:bg-white/10 transition-colors">
+                                    <span className="text-[#8C4A2A] text-[9px] tracking-widest uppercase font-sans">हिंदी में पढ़ें ✦</span>
+                                </button>
+                            </div>
 
                             {/* Scrollable body */}
-                            <div className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5">
+                            <div 
+                                className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5 overscroll-contain"
+                                style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
+                            >
 
                                 {/* Para 1 */}
                                 <p className="text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
