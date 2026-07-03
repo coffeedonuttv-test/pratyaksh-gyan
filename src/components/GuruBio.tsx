@@ -11,13 +11,13 @@ export default function GuruBio() {
         <section className="min-h-screen w-full bg-transparent flex items-center justify-center py-24 px-6 md:px-12 lg:px-24">
             <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-                {/* Left Column: The Darshan */}
+                {/* Left Column: The Darshan — UNTOUCHED */}
                 <div className="relative w-full aspect-[3/4] max-w-md mx-auto lg:mx-0 rounded-2xl p-1 shadow-[0_0_30px_rgba(140,74,42,0.4)] bg-gradient-to-b from-[#8C4A2A]/40 to-[#8C4A2A]/10 border border-[#8C4A2A]/50 transition-all duration-700 hover:shadow-[0_0_40px_rgba(140,74,42,0.6)] group">
                     <div className="absolute inset-0 rounded-2xl border border-[#8C4A2A]/30 transition-all duration-700 group-hover:border-[#8C4A2A]"></div>
                     <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#050505] border border-[#8C4A2A]/30">
                         <Image
                             src="/guru.jpg"
-                            alt="Yogi Ravi Pandit Sharma"
+                            alt="Yogi Ravikant Ji"
                             fill
                             className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                             sizes="(max-width: 768px) 100vw, 50vw"
@@ -25,11 +25,17 @@ export default function GuruBio() {
                     </div>
                 </div>
 
-                {/* Right Column: The Truth */}
+                {/* Right Column: The Flip Bio — LAYOUT PRESERVED, CONTENT UPGRADED */}
                 <div
                     className="relative flex flex-col w-full h-full cursor-pointer [perspective:2000px] group"
                     onClick={() => setIsFlipped(!isFlipped)}
                 >
+                    {/* Hover hint */}
+                    <div className="absolute -top-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 z-10">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse"></div>
+                        <span className="text-[#8C4A2A] text-[9px] tracking-[0.4em] uppercase font-light">Click to Translate</span>
+                    </div>
+
                     <motion.div
                         className="w-full h-full relative"
                         initial={false}
@@ -37,49 +43,109 @@ export default function GuruBio() {
                         transition={{ type: "spring", stiffness: 40, damping: 15 }}
                         style={{ transformStyle: "preserve-3d" }}
                     >
-                        {/* Front Face (Hindi - Original) */}
+
+                        {/* ── FRONT FACE: Hindi ── */}
                         <div
-                            className="flex flex-col gap-10 bg-transparent rounded-2xl"
+                            className="flex flex-col gap-6 bg-transparent rounded-2xl"
                             style={{ backfaceVisibility: "hidden" }}
                         >
-                            <h2 className="font-devanagari text-3xl md:text-4xl lg:text-5xl leading-tight text-[#8C4A2A] drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
-                                मानव सेवा करना सबसे बड़ा धर्म है । जिस मानव में मानवता हो उसकी सेवा ।।
+                            {/* Title */}
+                            <h2 className="font-devanagari text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
+                                योगी रविकांत जी के <span className="text-[#8C4A2A]">विषय में</span>
                             </h2>
 
-                            <div className="space-y-6">
-                                <p className="font-devanagari text-lg md:text-xl text-white/80 leading-relaxed font-light tracking-wide">
-                                    मैं योगी रवि पंडित शर्मा, सत्य की खोज मे , चेतना के रथ पर सवार , आध्यात्मिक जगत की खाक छान रहा हुँ । अब तक अपना जिवन इसी मार्ग पर खपाया है तथा मेरा संकल्प है की मैं , मानवता के कल्याण के लिए ' सत्य ' तक पहुँचकर हि विश्राम करूंगा । मेरे हृदय मैं ,मानव मात्र के लिए असीम करुणा है और मैं मानव कल्याण के ही पथ का पथिक हूँ । मेरी आकांक्षा हैं की जहा तक मेरी दृष्टि जाय कोई मनुष्य दुः खी ना हो । हर व्यक्ति सुखी हो , स्वस्थ एवं निरोग हो , इसी उद्देश हेतु हमने अपना जीवन समर्पित किया है । विवरण न देते हुए इतना ही कथन है अब तक , #माँ की कृपा से लाखो लोग दुःखो से मुक्ति पा चुके हैं । अन्ततः मेरा प्रयास तथा मेरी शक्ति समस्त मानव समाज के लिए हो , इसी आकांक्षा के साथ मै प्रस्तुत हूँ -
+                            {/* Scrollable body */}
+                            <div className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5">
+
+                                {/* Para 1 */}
+                                <p className="font-devanagari text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    योगी रविकांत जी एक जीवित प्रबुद्ध महापुरुष (आत्मज्ञानी गुरु) और एक क्रांतिकारी आध्यात्मिक मार्गदर्शक हैं, जो जनमानस को सत्य, निष्ठा और आंतरिक रूपांतरण से युक्त जीवन जीने के लिए प्रेरित करने हेतु पूर्णतः समर्पित हैं। वर्षों की कठिन आध्यात्मिक साधना और संपूर्ण भारत में की गई आध्यात्मिक यात्राओं के माध्यम से, उन्होंने जीवन के गूढ़ रहस्यों का गहन बोध प्राप्त किया। अब वे अपने सरल परंतु अत्यंत प्रभावशाली उपदेशों के माध्यम से लोगों को स्पष्टता, जिम्मेदारी और प्रामाणिकता के साथ जीवन जीने का मार्ग दिखाते हैं।
                                 </p>
+
+                                {/* Core Mantra Pull-Quote */}
+                                <div className="relative my-2 px-6 py-5 border-l-2 border-[#8C4A2A] bg-[#8C4A2A]/8 rounded-r-sm">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#8C4A2A]/10 to-transparent rounded-r-sm pointer-events-none" />
+                                    <p className="relative font-devanagari text-lg md:text-xl lg:text-2xl font-semibold text-[#FF9933] leading-snug drop-shadow-[0_0_12px_rgba(255,153,51,0.4)] tracking-wide">
+                                        &ldquo;ईमानदारी मुक्ति है, बेईमानी बंधन।&rdquo;
+                                    </p>
+                                </div>
+
+                                {/* Para 2 */}
+                                <p className="font-devanagari text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    योगी रविकांत जी के अनुसार, &lsquo;ईमानदारी&rsquo; का अर्थ केवल सत्य बोलना मात्र नहीं है; इसका अर्थ है जीवन के प्रत्येक आयाम में पूर्ण निष्ठा, सत्यता और नैतिक आचरण के साथ जीना। जब कोई व्यक्ति ईमानदारी से जीता है, तो यह स्वाभाविक रूप से उसे आंतरिक स्वतंत्रता और स्पष्टता की ओर ले जाता है। यही कारण है कि वे सिखाते हैं कि &ldquo;ईमानदारी मुक्ति है&rdquo;।
+                                </p>
+
+                                {/* Para 3 */}
+                                <p className="font-devanagari text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    ईमानदारी के साथ-साथ, वे &lsquo;सत्कर्म&rsquo; (निस्वार्थ सेवा) पर विशेष बल देते हैं—जरूरतमंदों की सहायता करना, बिना किसी स्वार्थ के समाज की सेवा करना, और सच्चे मन से शुभ कर्म करना। सत्कर्म के माध्यम से व्यक्ति अपने कर्मों को शुद्ध करता है और स्वार्थ से मुक्त हो जाता है।
+                                </p>
+
+                                {/* Para 4 */}
+                                <p className="font-devanagari text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    दूसरी ओर, वे सिखाते हैं कि &lsquo;बेईमानी&rsquo;—जिसमें अनैतिक आचरण, छल-कपट और स्वार्थी कर्म शामिल हैं—जीवन में भ्रम, पीड़ा और सांसारिक विकारों के प्रति आसक्ति उत्पन्न करती है। ऐसे कर्म व्यक्ति को अज्ञानता और अंधकार की गहराइयों में धकेल देते हैं, जिससे मानसिक और आध्यात्मिक बंधन का निर्माण होता है। इसलिए, वे स्पष्ट करते हैं कि &ldquo;बेईमानी बंधन है&rdquo;।
+                                </p>
+
                             </div>
 
-                            <div className="pt-8 border-t border-white/10 mt-auto">
-                                <p className="font-devanagari text-xl md:text-2xl text-white/60 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] text-center lg:text-left">
+                            {/* Footer */}
+                            <div className="pt-6 border-t border-white/10 mt-auto">
+                                <p className="font-devanagari text-lg md:text-xl text-white/50 text-center lg:text-left">
                                     🙏 जैसी माँ की इच्छा 🙏
                                 </p>
                             </div>
                         </div>
 
-                        {/* Back Face (English - Authentic Translation) */}
+                        {/* ── BACK FACE: English ── */}
                         <div
-                            className="absolute inset-0 flex flex-col gap-10 bg-transparent rounded-2xl h-full"
+                            className="absolute inset-0 flex flex-col gap-6 bg-transparent rounded-2xl h-full"
                             style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}
                         >
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl leading-tight text-[#8C4A2A] drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)] font-serif italic">
-                                Serving humanity is the highest Dharma. To serve the human who embodies humanity.
+                            {/* Title */}
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(140,74,42,0.2)]">
+                                About <span className="text-[#8C4A2A] font-serif italic">Yogi Ravikant Ji</span>
                             </h2>
 
-                            <div className="space-y-6">
-                                <p className="text-base md:text-lg lg:text-xl text-white/80 leading-relaxed font-light tracking-wide">
-                                    I, Yogi Ravi Pandit Sharma, in the quest for truth, riding the chariot of consciousness, am relentlessly traversing the spiritual realm. I have spent my life on this path thus far, and it is my firm resolve that, for the welfare of humanity, I shall rest only upon attaining the 'Truth'. In my heart, there is boundless compassion for all mankind, and I am a traveler exclusively on the path of human welfare. It is my deepest aspiration that as far as my vision reaches, no human being should be in sorrow. May every individual be happy, healthy, and free from disease; for this very purpose, I have dedicated my life. Without giving further details, this is all to be said for now: by the grace of the Divine #Mother, millions of people have been liberated from their suffering. Ultimately, may my efforts and my energy be devoted entirely to the whole of human society. With this aspiration, I present myself.
+                            {/* Scrollable body */}
+                            <div className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5">
+
+                                {/* Para 1 */}
+                                <p className="text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    Yogi Ravikant Ji is a living enlightened master and a revolutionary spiritual leader dedicated to guiding people toward a life rooted in truth, integrity, and inner transformation. Through years of intense spiritual discipline and spiritual wandering across India, he gained a profound understanding of life and now shares simple yet powerful teachings that help people live with clarity, responsibility, and authenticity.
                                 </p>
+
+                                {/* Core Mantra Pull-Quote */}
+                                <div className="relative my-2 px-6 py-5 border-l-2 border-[#8C4A2A] bg-[#8C4A2A]/8 rounded-r-sm">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#8C4A2A]/10 to-transparent rounded-r-sm pointer-events-none" />
+                                    <p className="relative font-serif text-lg md:text-xl lg:text-2xl font-semibold italic text-[#FF9933] leading-snug drop-shadow-[0_0_12px_rgba(255,153,51,0.4)]">
+                                        &ldquo;Honesty is liberation; dishonesty is bondage.&rdquo;
+                                    </p>
+                                </div>
+
+                                {/* Para 2 */}
+                                <p className="text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    According to Yogi Ravikant Ji, honesty is not limited to speaking the truth; it means living with complete integrity, truthfulness, and ethical conduct in every aspect of life. When a person lives honestly—with pure intention, ethical behavior, and responsibility toward others—it naturally leads them toward inner freedom and clarity. This is why he teaches that honesty leads to liberation.
+                                </p>
+
+                                {/* Para 3 */}
+                                <p className="text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    Along with honesty, he emphasizes selfless service (satsang)—helping those in need, serving society without selfish motives, and performing good deeds with sincerity. Through good actions, a person purifies their actions and develops compassion and responsibility toward others, helping them grow spiritually and become free from selfishness.
+                                </p>
+
+                                {/* Para 4 */}
+                                <p className="text-sm md:text-base text-white/75 leading-relaxed font-light tracking-wide">
+                                    On the other hand, Yogi Ravikant Ji teaches that dishonesty—which includes unethical living, deception, selfish actions, and wrongdoing—creates confusion, suffering, and attachment to worldly problems. Such actions lead a person deeper into ignorance and darkness, creating mental and spiritual bondage. Therefore, he explains that dishonesty leads to bondage.
+                                </p>
+
                             </div>
 
-                            <div className="pt-8 border-t border-white/10 mt-auto">
-                                <p className="text-lg md:text-xl text-white/60 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] text-center lg:text-left font-serif italic">
+                            {/* Footer */}
+                            <div className="pt-6 border-t border-white/10 mt-auto">
+                                <p className="text-lg md:text-xl text-white/50 text-center lg:text-left font-serif italic">
                                     🙏 As the Divine Mother Wills 🙏
                                 </p>
                             </div>
                         </div>
+
                     </motion.div>
                 </div>
 

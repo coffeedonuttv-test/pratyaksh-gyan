@@ -11,7 +11,7 @@ export default function HeroShunya() {
   const [langState, setLangState] = useState(0);
 
   const quoteMain = useTextMorph(
-    langState === 0 ? "ईमानदारी मुक्ति है, बेईमानी बंधन।" : "Honesty is Freedom", 
+    langState === 0 ? "ईमानदारी मुक्ति है, बेईमानी बंधन।" : "Honesty is liberation, dishonesty is bondage.", 
     langState, 
     1200
   );
