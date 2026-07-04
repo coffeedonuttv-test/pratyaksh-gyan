@@ -106,7 +106,7 @@ function BinduRipple({ phase }: { phase: Phase }) {
 
 // ─── CONFIRMATION MONOLITH ────────────────────────────────────────────────────
 
-function ConfirmationMonolith({ lang }: { lang: "HI" | "EN" }) {
+function ConfirmationMonolith({ lang, whatsappUrl }: { lang: "HI" | "EN"; whatsappUrl: string }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -130,29 +130,45 @@ function ConfirmationMonolith({ lang }: { lang: "HI" | "EN" }) {
             <LangText
                 lang={lang}
                 hi={
-                    <div className="space-y-5 max-w-2xl">
+                    <div className="space-y-5 max-w-2xl flex flex-col items-center">
                         <p className="font-devanagari text-xl md:text-2xl lg:text-3xl text-[#F4F2EB] font-light leading-relaxed">
-                            ✦ आपकी जिज्ञासा गुरु चरणों में समर्पित हो चुकी है।
+                            ✦ आपकी जिज्ञासा गुरु चरणों में समर्पित हो रही है...
                         </p>
                         <p className="font-devanagari text-sm md:text-base text-[#A6A298] font-light tracking-wide leading-relaxed">
-                            शीघ्र ही आपको ईमेल द्वारा मार्गदर्शन प्राप्त होगा।
+                            WhatsApp चैट खुल रहा है।
                         </p>
+                        <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-6 inline-flex px-8 py-3 rounded-full border border-[#8C4A2A]/50 bg-[#8C4A2A]/10 text-[#F4F2EB] font-devanagari text-sm hover:bg-[#8C4A2A]/20 transition-colors shadow-[0_0_15px_rgba(140,74,42,0.3)]"
+                        >
+                            ✦ यदि WhatsApp स्वतः न खुले, तो यहाँ क्लिक करें →
+                        </a>
                     </div>
                 }
                 en={
-                    <div className="space-y-5 max-w-2xl">
+                    <div className="space-y-5 max-w-2xl flex flex-col items-center">
                         <p className="text-xl md:text-2xl lg:text-3xl text-[#F4F2EB] font-light tracking-[0.02em] leading-relaxed">
-                            ✦ Your inquiry has reached the sanctuary.
+                            ✦ Your inquiry is reaching the sanctuary...
                         </p>
                         <p className="text-sm md:text-base text-[#A6A298] font-light tracking-widest uppercase leading-relaxed">
-                            You will receive Guru Ji&apos;s guidance via email soon.
+                            Opening WhatsApp chat.
                         </p>
+                        <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-6 inline-flex px-8 py-3 rounded-full border border-[#8C4A2A]/50 bg-[#8C4A2A]/10 text-[#F4F2EB] text-xs uppercase tracking-widest hover:bg-[#8C4A2A]/20 transition-colors shadow-[0_0_15px_rgba(140,74,42,0.3)]"
+                        >
+                            ✦ If WhatsApp does not open automatically, click here →
+                        </a>
                     </div>
                 }
             />
 
             {/* Footer ornament */}
-            <div className="flex items-center gap-5 mt-2">
+            <div className="flex items-center gap-5 mt-8">
                 <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#8C4A2A]/30" />
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A]/50 shadow-[0_0_6px_rgba(140,74,42,0.6)]" />
                 <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#8C4A2A]/30" />
@@ -172,7 +188,7 @@ export default function JigyasaSection() {
     const [lang, setLang] = useState<"HI" | "EN">("HI");
     const [isFocused, setIsFocused] = useState(false);
     const [phase, setPhase] = useState<Phase>("idle");
-    const [error, setError] = useState<string | null>(null);
+    const [whatsappUrl, setWhatsappUrl] = useState<string>("");
 
     const [form, setForm] = useState({
         name: "",
@@ -196,23 +212,22 @@ export default function JigyasaSection() {
         setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    // ── BINDU RIPPLE SUBMISSION SEQUENCE ─────────────────────────────────────
+    // ── BINDU RIPPLE SUBMISSION SEQUENCE (WHATSAPP REDIRECT) ─────────────────
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        setError(null);
+
+        if (form.name.trim().length < 2 || form.question.trim().length < 10) {
+            return; // Basic validation bypass guard
+        }
+
+        // Construct WhatsApp URL
+        const message = `✦ JIGYASA / जिज्ञासा — साधक का प्रश्न ✦\n\n*Name / नाम:* ${form.name}\n*Email / ईमेल:* ${form.email}\n\n*Inquiry / जिज्ञासा:*\n${form.question}`;
+        const url = `https://wa.me/919244138241?text=${encodeURIComponent(message)}`;
+        setWhatsappUrl(url);
 
         // Phase 1: Inward Collapse (0–600ms)
         setPhase("collapsing");
-
-        // Fire API call in background during collapse
-        const apiPromise = fetch("/api/jigyasa", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(form),
-        });
-
-        // Wait for collapse animation
         await delay(600);
 
         // Phase 2a: Bindu appears (600–1000ms)
@@ -223,26 +238,14 @@ export default function JigyasaSection() {
         setPhase("rippling");
         await delay(800);
 
-        // Wait for API to resolve (usually done by now)
-        try {
-            const res = await apiPromise;
-            if (!res.ok) {
-                const data = await res.json();
-                throw new Error(data.error || "Submission failed");
-            }
-        } catch {
-            // API failed — restore form so seeker can retry
-            setPhase("idle");
-            setError(
-                lang === "HI"
-                    ? "कुछ त्रुटि हुई। कृपया पुनः प्रयास करें।"
-                    : "Something went wrong. Please try again."
-            );
-            return;
-        }
-
-        // Phase 3: Monolith Illumination (1800ms+)
+        // Phase 3: Monolith Illumination & Redirect (1800ms+)
         setPhase("monolith");
+
+        // Use direct window location to redirect (this handles mobile browser blocks in most cases)
+        // Set a small timeout to allow monolith to appear
+        setTimeout(() => {
+            window.location.href = url;
+        }, 300);
     };
 
     const isSubmitting = phase === "collapsing" || phase === "bindu" || phase === "rippling";
@@ -387,8 +390,8 @@ export default function JigyasaSection() {
                                         onPointerDown={(e) => e.stopPropagation()}
                                         placeholder={
                                             lang === "HI"
-                                                ? "ईमेल पता (उत्तर प्राप्त करने हेतु)..."
-                                                : "Email Address (To receive Guru Ji's guidance)..."
+                                                ? "ईमेल पता..."
+                                                : "Email Address..."
                                         }
                                         className="w-full bg-transparent border-b border-white/15 pb-4 pt-1 text-[#F4F2EB] placeholder-[#A6A298]/25 focus:border-[#8C4A2A] focus:outline-none transition-colors duration-500 font-light text-lg tracking-wide font-mono"
                                     />
@@ -422,22 +425,8 @@ export default function JigyasaSection() {
                                     <div className="absolute bottom-0 left-0 w-0 h-px bg-[#8C4A2A] group-focus-within/field:w-full transition-all duration-700 ease-out" />
                                 </div>
 
-                                {/* Error state */}
-                                <AnimatePresence>
-                                    {error && (
-                                        <motion.p
-                                            initial={{ opacity: 0, y: -6 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0 }}
-                                            className={`text-red-400/60 text-[11px] tracking-[0.3em] uppercase text-center ${lang === "HI" ? "font-devanagari" : "font-light"}`}
-                                        >
-                                            {error}
-                                        </motion.p>
-                                    )}
-                                </AnimatePresence>
-
                                 {/* Ornament rule */}
-                                <div className="flex items-center gap-6">
+                                <div className="flex items-center gap-6 mt-4">
                                     <div className="flex-1 h-px bg-gradient-to-r from-transparent to-white/5" />
                                     <div className="w-1 h-1 rounded-full bg-[#8C4A2A]/40" />
                                     <div className="flex-1 h-px bg-gradient-to-l from-transparent to-white/5" />
@@ -457,10 +446,10 @@ export default function JigyasaSection() {
 
                                         <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse shadow-[0_0_8px_rgba(140,74,42,0.8)] shrink-0" />
 
-                                        <span className={`text-[#F4F2EB] text-[11px] tracking-[0.45em] uppercase font-light ${lang === "HI" ? "font-devanagari" : ""}`}>
+                                        <span className={`text-[#F4F2EB] text-[11px] tracking-[0.35em] sm:tracking-[0.45em] uppercase font-light ${lang === "HI" ? "font-devanagari" : ""}`}>
                                             {lang === "HI"
-                                                ? "✦ जिज्ञासा समर्पित करें →"
-                                                : "✦ Offer Inquiry →"}
+                                                ? "✦ जिज्ञासा समर्पित करें (WhatsApp पर संवाद) →"
+                                                : "✦ Offer Inquiry via WhatsApp →"}
                                         </span>
 
                                         <div className="w-1.5 h-1.5 rounded-full bg-[#8C4A2A] animate-pulse shadow-[0_0_8px_rgba(140,74,42,0.8)] shrink-0" />
@@ -476,7 +465,7 @@ export default function JigyasaSection() {
                         ) : (
                             // ── PHASE 3: MONOLITH ILLUMINATION ───────────────────
                             <motion.div key="monolith" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
-                                <ConfirmationMonolith lang={lang} />
+                                <ConfirmationMonolith lang={lang} whatsappUrl={whatsappUrl} />
                             </motion.div>
                         )}
                     </AnimatePresence>
