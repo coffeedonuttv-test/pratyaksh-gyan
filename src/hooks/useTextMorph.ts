@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZअइउएओकखगघचछजझटठडढतथदधनपफबभमयरलवशषसह!@#$%^&*()_+{}[]|:;<>,./?";
 
 export function useTextMorph(targetText: string, triggerId: number, duration: number = 800) {
     const [displayText, setDisplayText] = useState(targetText);
+    const isFirstMount = useRef(true);
 
     useEffect(() => {
-        // Initial setup
-        if (triggerId === 0) {
-            setDisplayText(targetText);
+        // Skip animation on initial mount
+        if (isFirstMount.current) {
+            isFirstMount.current = false;
             return;
         }
 

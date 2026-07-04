@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -9,7 +9,7 @@ function ParticleSwarm() {
   const ref = useRef<THREE.Points>(null);
   const particleCount = 4000;
   
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const arr = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
        // Spread particles in a large cube
@@ -18,7 +18,7 @@ function ParticleSwarm() {
        arr[i * 3 + 2] = (Math.random() - 0.5) * 20;
     }
     return arr;
-  }, [particleCount]);
+  });
 
   const { mouse, viewport } = useThree();
 

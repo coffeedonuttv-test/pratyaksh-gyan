@@ -68,6 +68,7 @@ export default function GuruBio() {
                             <div 
                                 className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5 overscroll-contain"
                                 style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
+                                data-lenis-prevent="true"
                             >
 
                                 {/* Para 1 */}
@@ -130,6 +131,7 @@ export default function GuruBio() {
                             <div 
                                 className="overflow-y-auto max-h-[55vh] lg:max-h-[60vh] pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[#8C4A2A]/30 space-y-5 overscroll-contain"
                                 style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}
+                                data-lenis-prevent="true"
                             >
 
                                 {/* Para 1 */}

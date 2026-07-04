@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [isHovering, setIsHovering] = useState(false);
 
     // Track mouse position instantly
@@ -36,8 +36,6 @@ export default function CustomCursor() {
         window.addEventListener("mousemove", moveCursor);
         document.body.addEventListener("mouseenter", handleMouseEnter);
         document.body.addEventListener("mouseleave", handleMouseLeave);
-
-        setIsVisible(true);
 
         return () => {
             window.removeEventListener("mousemove", moveCursor);

@@ -11,7 +11,7 @@ class AudioEngine {
 
   init() {
     if (this.ctx) return;
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     this.ctx = new AudioContextClass();
     
     // Setup Drone

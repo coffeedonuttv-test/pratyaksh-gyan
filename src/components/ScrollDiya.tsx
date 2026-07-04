@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValueEvent, useSpring } from "framer-motion";
+import { motion, useScroll, useVelocity, useTransform, useSpring, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 
 export default function ScrollDiya() {
-    const { scrollYProgress } = useScroll();
-    
-    // Liquid Physics: Apply mass, stiffness, and low damping for that Awwwards "overshoot bounce"
+    const { scrollYProgress, scrollY } = useScroll();
+
+    // ─── Scroll Progress (existing liquid physics) ──────────────────────
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 70,
         damping: 14,
@@ -16,51 +16,55 @@ export default function ScrollDiya() {
 
     const [percent, setPercent] = useState(0);
 
-    // Update specific discrete states (like color flips) based on the raw progress so they don't bounce backward randomly
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         setPercent(Math.round(latest * 100));
     });
 
-    // The entire component fades in gracefully at the very top of the page
-    const containerOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
 
-    // Flame Core Analytics (Driven by the spring physics)
-    // Starts as a dim spark (0.3), explodes to blistering bright (1) with overshoot ability.
+
+    // Flame intensity driven by scroll depth
     const flameOpacity = useTransform(smoothProgress, [0, 1], [0.3, 1]);
-    
-    // clamp: false allows the heavy liquid overshoot. If you scroll fast to the bottom, scale goes > 1.8 before resting.
     const flameScale = useTransform(smoothProgress, [0, 1], [0.5, 1.8], { clamp: false });
-    
-    // The visual integer number output driven directly by the physics spring, interpolating instantly
     const springPercentOutput = useTransform(smoothProgress, [0, 1], [0, 100]);
 
+    // ─── KINETIC WIND PHYSICS — "The Breath of the Spirit" ─────────────
+    const scrollVelocity = useVelocity(scrollY);
+
+    // Map velocity → flame tilt (wind effect)
+    // Fast scroll down (+velocity) → flame tilts backward (-deg)
+    // Fast scroll up (-velocity) → flame tilts forward (+deg)
+    const rawTilt = useTransform(scrollVelocity, [-2000, 0, 2000], [18, 0, -18]);
+    const smoothTilt = useSpring(rawTilt, { stiffness: 150, damping: 15, mass: 0.5 });
+
+    // Ambient glow expansion: grows when scrolling fast
+    const rawGlowScale = useTransform(scrollVelocity, [-1500, 0, 1500], [1.6, 1, 1.6]);
+    const glowScale = useSpring(rawGlowScale, { stiffness: 100, damping: 20 });
+
     // Flame colors based on scroll depth
-    const isLit = percent >= 98; // Trigger true ignition at the absolute bottom
-    const activeColor = "#FF9933"; // Scorching orange
-    const dormantColor = "#8C4A2A"; // Deep rusted brown
+    const isLit = percent >= 98;
+    const activeColor = "#FF9933";
+    const dormantColor = "#8C4A2A";
 
     return (
         <motion.div
-            style={{ opacity: containerOpacity }}
-            className="fixed bottom-8 right-8 z-[90] flex flex-col items-center gap-3 pointer-events-none"
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 flex flex-col items-center gap-3 pointer-events-none"
         >
             <div className="relative flex items-center justify-center w-16 h-16">
-                
+
                 {/* 
                     MULTI-LAYERED VOLUMETRIC HALO 
-                    Creating actual depth of light with 3 distinct physical layers 
                 */}
-                
-                {/* 1. Outer Ambient Bleed (Massive spread, low opacity) */}
+
+                {/* 1. Outer Ambient Bleed — now expands with scroll velocity */}
                 <motion.div
                     style={{ 
                         opacity: useTransform(flameOpacity, v => v * 0.4), 
-                        scale: flameScale 
+                        scale: glowScale 
                     }}
                     className={`absolute w-12 h-12 rounded-full blur-[30px] transition-colors duration-700 ${isLit ? 'bg-[#FF9933]' : 'bg-[#8C4A2A]'}`}
                 />
 
-                {/* 2. Mid Glow (Medium spread, grounding the light source) */}
+                {/* 2. Mid Glow */}
                 <motion.div
                     style={{ 
                         opacity: useTransform(flameOpacity, v => v * 0.7), 
@@ -69,7 +73,7 @@ export default function ScrollDiya() {
                     className={`absolute w-8 h-8 rounded-full blur-[15px] transition-colors duration-500 ${isLit ? 'bg-[#FF9933]' : 'bg-[#8C4A2A]'}`}
                 />
 
-                {/* 3. Core Spark (Tight, intense heat directly against the SVG path) */}
+                {/* 3. Core Spark */}
                 <motion.div
                     style={{ 
                         opacity: flameOpacity, 
@@ -78,19 +82,19 @@ export default function ScrollDiya() {
                     className={`absolute w-4 h-4 rounded-full blur-[6px] transition-colors duration-300 ${isLit ? 'bg-[#FFFFFF]' : 'bg-[#FF9933]'}`}
                 />
 
-                {/* Glassmorphic Puck - Fades in near the footer to guarantee contrast against pitch black */}
+                {/* Glassmorphic Puck */}
                 <motion.div
                     style={{ opacity: useTransform(smoothProgress, [0.85, 1], [0, 1]) }}
                     className="absolute inset-[-4px] rounded-full bg-[#111111]/80 backdrop-blur-xl border border-white/10 z-[5] shadow-[0_0_15px_rgba(0,0,0,0.8)]"
                 />
 
-                {/* The Physical SVG Diya / Lotus Bud */}
+                {/* The Physical SVG Diya — base stays rock-solid */}
                 <motion.div 
                     style={{ scale: useTransform(smoothProgress, [0, 1], [1, 1.15], { clamp: false }) }}
                     className="z-10 text-white/80"
                 >
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="drop-shadow-2xl relative z-10">
-                        {/* Base of Diya */}
+                        {/* Base of Diya — IMMOVABLE, anchored */}
                         <path 
                             d="M12 21C17.5228 21 22 18 22 15C22 13.5 17.5228 13 12 13C6.47715 13 2 13.5 2 15C2 18 6.47715 21 12 21Z" 
                             fill={isLit ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.05)"}
@@ -100,18 +104,32 @@ export default function ScrollDiya() {
                             strokeLinejoin="round" 
                             className="transition-all duration-1000"
                         />
-                        {/* Inner physical flame vessel */}
-                        <path 
-                            d="M12 13C12 9 10 5 12 2C14 5 12 9 12 13Z" 
-                            fill={isLit ? activeColor : dormantColor} 
-                            stroke={isLit ? "#FFFFFF" : "rgba(255,255,255,0.6)"} 
-                            strokeWidth="1.5" 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            className="transition-all duration-500" 
-                        />
+                        {/* Inner flame vessel — TILTS with scroll velocity wind */}
+                        <motion.g
+                            style={{
+                                rotate: smoothTilt,
+                                transformOrigin: "12px 13px", // pivot at the base of the flame
+                            }}
+                        >
+                            <path 
+                                d="M12 13C12 9 10 5 12 2C14 5 12 9 12 13Z" 
+                                fill={isLit ? activeColor : dormantColor} 
+                                stroke={isLit ? "#FFFFFF" : "rgba(255,255,255,0.6)"} 
+                                strokeWidth="1.5" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                className="transition-all duration-500" 
+                            />
+                        </motion.g>
                     </svg>
                 </motion.div>
+
+                {/* Resting State: Subtle breathing pulse when idle */}
+                <motion.div
+                    animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className={`absolute w-14 h-14 rounded-full ${isLit ? 'bg-[#FF9933]' : 'bg-[#8C4A2A]'} blur-xl`}
+                />
             </div>
 
             {/* Spring-Driven Typography */}

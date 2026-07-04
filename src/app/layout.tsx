@@ -33,15 +33,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${interSans.variable} ${yatraOne.variable} antialiased`}
+        className={`${interSans.variable} ${yatraOne.variable} antialiased overflow-x-hidden`}
       >
         <SentientVoid />
         <AudioAtmosphere />
+        <ScrollDiya />
         <SmoothScroll>
           <CustomCursor />
           <ShunyaHeader />
           {children}
-          <ScrollDiya />
           <Footer />
         </SmoothScroll>
       </body>
