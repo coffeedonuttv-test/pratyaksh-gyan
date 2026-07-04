@@ -262,10 +262,10 @@ function FocusGridRow({
                             exit={{ opacity: 0, y: 8 }}
                             transition={{ duration: 0.28, ease: "easeOut" }}
                         >
-                            <p className={`text-base md:text-lg lg:text-xl text-white/60 lg:group-hover/row:text-white transition-colors duration-300 leading-snug ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}>
+                            <p className={`text-base md:text-lg lg:text-xl text-[#F4F2EB]/60 lg:group-hover/row:text-[#F4F2EB] transition-colors duration-300 leading-snug ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}>
                                 {lang === "HI" ? teaching.titleHi : teaching.titleEn}
                             </p>
-                            <p className={`text-white/20 text-[10px] tracking-[0.3em] uppercase font-light mt-2 ${lang === "HI" ? "font-devanagari" : ""}`}>
+                            <p className={`text-[#F4F2EB]/20 text-[10px] tracking-[0.3em] uppercase font-light mt-2 ${lang === "HI" ? "font-devanagari" : ""}`}>
                                 {lang === "HI" ? teaching.subtitleHi : teaching.subtitleEn}
                             </p>
                         </motion.div>
@@ -337,8 +337,8 @@ export default function GyanSection() {
                 {/* ═══════════════════════════════════════════════════
                     ACT II — THE FOCUS GRID (DISCOURSE STREAM)
                 ═══════════════════════════════════════════════════ */}
-                <div className="w-full border-t border-white/5 bg-[#030303] mt-24 md:mt-32">
-                    <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-32">
+                <div className="w-full border-t border-white/5 bg-[#030303] mt-16 md:mt-20">
+                    <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-20">
 
                         {/* Section Header */}
                         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 border-b border-white/10 pb-10">

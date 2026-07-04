@@ -64,7 +64,7 @@ export default function ShunyaHeader() {
 
             {/* Center Links */}
             <nav className="absolute left-1/2 -translate-x-1/2 items-center gap-8 hidden md:flex z-[70]">
-                {["GYAN", "KUTIYA", "SANGAT"].map((link) => (
+                {["GYAN", "KUTIYA", "SANGAT", "JIGYASA"].map((link) => (
                     <Magnetic key={link} strength={0.5}>
                         <Link href={`/${link.toLowerCase()}`} className="font-sans text-xs font-semibold tracking-wider text-white/40 hover:text-white transition-colors duration-300 p-2 min-h-[44px] flex items-center">
                             {link}
@@ -106,7 +106,7 @@ export default function ShunyaHeader() {
                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
                         className="fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[60] flex flex-col items-center justify-center gap-10 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] md:hidden"
                     >
-                        {["GYAN", "KUTIYA", "SANGAT"].map((link) => (
+                        {["GYAN", "KUTIYA", "SANGAT", "JIGYASA"].map((link) => (
                             <Link
                                 key={link}
                                 href={`/${link.toLowerCase()}`}

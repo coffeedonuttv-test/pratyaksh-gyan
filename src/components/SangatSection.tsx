@@ -202,7 +202,7 @@ function ShrineRow({
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 8 }}
                             transition={{ duration: 0.28, ease: "easeOut" }}
-                            className={`text-base md:text-lg lg:text-xl text-white/60 lg:group-hover/shrine:text-white transition-colors duration-300 leading-snug ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}
+                            className={`text-base md:text-lg lg:text-xl text-[#F4F2EB]/60 lg:group-hover/shrine:text-[#F4F2EB] transition-colors duration-300 leading-snug ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}
                         >
                             {lang === "HI" ? channel.hi : channel.en}
                         </motion.p>
@@ -280,7 +280,7 @@ export default function SangatSection() {
                 {/* ═══════════════════════════════════════════════════
                     ACT I — THE COMMUNITY GATEWAY
                 ═══════════════════════════════════════════════════ */}
-                <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 pt-8 pb-24 md:pb-32">
+                <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 pt-8 pb-16 md:pb-20">
 
                     {/* 3D Flip Header */}
                     <div className="mb-20 w-full flex justify-center">
@@ -343,7 +343,7 @@ export default function SangatSection() {
                 {/* ═══════════════════════════════════════════════════
                     ACT II — THE SEVA MONOLITH
                 ═══════════════════════════════════════════════════ */}
-                <div className="w-full border-t border-white/5 bg-[#030303] py-24 md:py-32 px-6 md:px-12 lg:px-24">
+                <div className="w-full border-t border-white/5 bg-[#030303] py-16 md:py-20 px-6 md:px-12 lg:px-24">
                     <div className="max-w-[1400px] mx-auto">
 
                         {/* Section title */}

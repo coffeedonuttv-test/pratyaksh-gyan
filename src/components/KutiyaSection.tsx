@@ -170,7 +170,7 @@ function RuleRow({
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className={`leading-relaxed text-sm md:text-base text-white/65 lg:group-hover/row:text-white transition-colors duration-300 ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}
+                        className={`leading-relaxed text-sm md:text-base text-[#F4F2EB]/70 lg:group-hover/row:text-[#F4F2EB] transition-colors duration-300 ${lang === "HI" ? "font-devanagari tracking-wide" : "font-light tracking-wide"}`}
                     >
                         {lang === "HI" ? rule.hi : rule.en}
                     </motion.p>
@@ -230,7 +230,7 @@ export default function KutiyaSection() {
                 {/* ═══════════════════════════════════════════════════
                     ACT I — HERO FOUNDATION
                 ═══════════════════════════════════════════════════ */}
-                <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 pt-8 pb-32">
+                <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 pt-8 pb-16">
 
                     {/* 3D Flip Header — stopPropagation so header flip ≠ lang flip */}
                     <div className="mb-12 w-full flex justify-center">
@@ -342,12 +342,12 @@ export default function KutiyaSection() {
                             <LangText
                                 lang={lang}
                                 hi={
-                                    <p className="font-devanagari text-sm md:text-base text-white/70 leading-relaxed tracking-wide">
+                                    <p className="font-devanagari text-sm md:text-base text-[#F4F2EB]/75 leading-relaxed tracking-wide">
                                         महत्वपूर्ण सूचना: यदि आश्रम के उपरोक्त नियमों का उल्लंघन किया जाता है, तो साधक को तुरंत कुटिया छोड़नी होगी। | साधना हेतु न्यूनतम 7 दिनों का प्रवास अनिवार्य है।
                                     </p>
                                 }
                                 en={
-                                    <p className="text-sm md:text-base text-white/70 leading-relaxed tracking-wide font-light">
+                                    <p className="text-sm md:text-base text-[#F4F2EB]/75 leading-relaxed tracking-wide font-light">
                                         Important Notice: If the ashram rules are violated, the seeker will be required to leave the hermitage immediately. | Seekers must stay for a minimum of 7 days for Sadhana.
                                     </p>
                                 }
@@ -407,7 +407,7 @@ export default function KutiyaSection() {
                     ACT IV — WAYFINDER & RADAR PORTAL
                 ═══════════════════════════════════════════════════ */}
                 <div className="w-full border-t border-white/5 bg-[#030303]">
-                    <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 py-24 md:py-32">
+                    <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-20">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
                             {/* Left — Address & Contacts */}

@@ -14,15 +14,15 @@ export default function Footer() {
     );
 
     return (
-        <footer className="w-full bg-[#0A0A0A] border-t border-[#8C4A2A]/20 pt-20 pb-8 px-6 md:px-12 lg:px-24 flex flex-col items-center justify-between relative z-20">
+        <footer className="w-full bg-[#070606] border-t border-[#8C4A2A]/20 pt-16 pb-8 px-6 md:px-12 lg:px-24 flex flex-col items-center justify-between relative z-20">
 
             {/* Top Section - Interactive Text Morph Quote */}
             <div
-                className="w-full max-w-7xl mb-16 cursor-pointer group flex flex-col items-center"
+                className="w-full max-w-7xl mb-10 cursor-pointer group flex flex-col items-center"
                 onClick={() => setLangState(prev => prev === 0 ? 1 : 0)}
             >
                 <div className="relative w-full h-[140px] md:h-[180px] lg:h-[200px] flex items-center justify-center text-center">
-                    <h2 className="font-devanagari text-3xl md:text-5xl lg:text-6xl font-light tracking-wide text-white/10 group-hover:text-[#8C4A2A]/40 transition-colors duration-700 leading-relaxed flex flex-wrap justify-center w-full">
+                    <h2 className="font-devanagari text-3xl md:text-5xl lg:text-6xl font-light tracking-wide text-[#F4F2EB]/15 group-hover:text-[#8C4A2A]/50 transition-colors duration-700 leading-relaxed flex flex-wrap justify-center w-full">
                         {quoteMain === "ईमानदारी मुक्ति है, बेईमानी बंधन।" ? (
                             <>ईमानदारी मुक्ति है<span className="font-sans mx-1">,</span> बेईमानी बंधन<span className="font-sans ml-1">।</span></>
                         ) : (
@@ -38,8 +38,8 @@ export default function Footer() {
             </div>
 
             {/* Middle Section - Centered Minimal Navigation */}
-            <div className="w-full max-w-3xl flex justify-center mb-20 border-t border-b border-white/5 py-8">
-                <nav className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-white/40 tracking-[0.3em] font-light text-xs md:text-sm uppercase">
+            <div className="w-full max-w-3xl flex justify-center mb-8 border-t border-b border-white/5 py-8">
+                <nav className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-[#A6A298] tracking-[0.3em] font-light text-xs md:text-sm uppercase">
                     <Link href="/gyan" className="hover:text-[#8C4A2A] transition-colors duration-300">
                         The Teachings
                     </Link>
@@ -49,12 +49,15 @@ export default function Footer() {
                     <Link href="/sangat" className="hover:text-[#8C4A2A] transition-colors duration-300">
                         The Sangat
                     </Link>
+                    <Link href="/jigyasa" className="hover:text-[#8C4A2A] transition-colors duration-300">
+                        Jigyasa
+                    </Link>
                 </nav>
             </div>
 
             {/* Bottom Section - Copyright Dedication */}
             <div className="w-full max-w-7xl flex items-center justify-center pt-4 mt-auto">
-                <p className="text-[10px] text-white/30 tracking-[0.4em] uppercase text-center font-medium">
+                <p className="text-[10px] text-[#A6A298]/60 tracking-[0.4em] uppercase text-center font-medium">
                     © 2026 Pratyaksh Gyan. A digital offering.
                 </p>
             </div>
