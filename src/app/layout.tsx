@@ -7,7 +7,6 @@ import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import SentientVoid from "@/components/SentientVoid";
-import AudioAtmosphere from "@/components/AudioAtmosphere";
 
 const interSans = Inter({
   variable: "--font-inter",
@@ -36,7 +35,6 @@ export default function RootLayout({
         className={`${interSans.variable} ${yatraOne.variable} antialiased overflow-x-hidden`}
       >
         <SentientVoid />
-        <AudioAtmosphere />
         <ScrollDiya />
         <SmoothScroll>
           <CustomCursor />
