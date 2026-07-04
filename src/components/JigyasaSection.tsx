@@ -192,7 +192,7 @@ export default function JigyasaSection() {
 
     const [form, setForm] = useState({
         name: "",
-        email: "",
+        whatsapp: "",
         question: "",
     });
 
@@ -217,12 +217,12 @@ export default function JigyasaSection() {
         e.preventDefault();
         e.stopPropagation();
 
-        if (form.name.trim().length < 2 || form.question.trim().length < 10) {
+        if (form.name.trim().length < 2 || form.whatsapp.trim().length < 5 || form.question.trim().length < 10) {
             return; // Basic validation bypass guard
         }
 
         // Construct WhatsApp URL
-        const message = `✦ JIGYASA / जिज्ञासा — साधक का प्रश्न ✦\n\n*Name / नाम:* ${form.name}\n*Email / ईमेल:* ${form.email}\n\n*Inquiry / जिज्ञासा:*\n${form.question}`;
+        const message = `✦ JIGYASA / जिज्ञासा — साधक का प्रश्न ✦\n\n*Name / नाम:* ${form.name}\n*WhatsApp / व्हाट्सऐप:* ${form.whatsapp}\n\n*Inquiry / जिज्ञासा:*\n${form.question}`;
         const url = `https://wa.me/919244138241?text=${encodeURIComponent(message)}`;
         setWhatsappUrl(url);
 
@@ -370,19 +370,19 @@ export default function JigyasaSection() {
                                     <div className="absolute bottom-0 left-0 w-0 h-px bg-[#8C4A2A] group-focus-within/field:w-full transition-all duration-700 ease-out" />
                                 </div>
 
-                                {/* Field 2: Email */}
+                                {/* Field 2: WhatsApp Number */}
                                 <div className="relative group/field">
                                     <label
                                         className={`block text-[9px] tracking-[0.5em] uppercase font-light mb-4 transition-colors duration-500 ${isFocused ? "text-[#8C4A2A]" : "text-[#A6A298]/50"}`}
                                     >
-                                        {lang === "HI" ? "ईमेल पता" : "Email Address"}
+                                        {lang === "HI" ? "व्हाट्सऐप नंबर" : "WhatsApp Number"}
                                     </label>
                                     <input
-                                        type="email"
-                                        name="email"
+                                        type="tel"
+                                        name="whatsapp"
                                         required
-                                        autoComplete="email"
-                                        value={form.email}
+                                        autoComplete="tel"
+                                        value={form.whatsapp}
                                         onChange={stopAndSet}
                                         onFocus={handleFocus}
                                         onBlur={handleBlur}
@@ -390,10 +390,10 @@ export default function JigyasaSection() {
                                         onPointerDown={(e) => e.stopPropagation()}
                                         placeholder={
                                             lang === "HI"
-                                                ? "ईमेल पता..."
-                                                : "Email Address..."
+                                                ? "अपना व्हाट्सऐप नंबर (देश के कोड सहित) लिखें..."
+                                                : "Your WhatsApp Number (with country code)..."
                                         }
-                                        className="w-full bg-transparent border-b border-white/15 pb-4 pt-1 text-[#F4F2EB] placeholder-[#A6A298]/25 focus:border-[#8C4A2A] focus:outline-none transition-colors duration-500 font-light text-lg tracking-wide font-mono"
+                                        className={`w-full bg-transparent border-b border-white/15 pb-4 pt-1 text-[#F4F2EB] placeholder-[#A6A298]/25 focus:border-[#8C4A2A] focus:outline-none transition-colors duration-500 font-light text-base sm:text-lg tracking-wide ${lang === "HI" ? "font-devanagari" : "font-mono"}`}
                                     />
                                     <div className="absolute bottom-0 left-0 w-0 h-px bg-[#8C4A2A] group-focus-within/field:w-full transition-all duration-700 ease-out" />
                                 </div>
